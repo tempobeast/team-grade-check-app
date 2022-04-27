@@ -8,41 +8,20 @@ import NewPlayerForm from './NewPlayerForm';
 import Home from './Home';
 import Filter from "./Filter"
 
-//git pushes, client side routing, blog, video
+//client side routing, blog, video
 
 function App() {
 
-  const [searchChange, setSearchChange] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  
+  
   const [players, setPlayers] = useState([]);
-  const [addPlayerClick, setAddPlayerClick] = useState(false)
+  
 
   useEffect(() => {
     fetch("http://localhost:3000/players")
     .then((res) => res.json())
     .then((data) => setPlayers(data))
   }, []) 
-
-  function onSearchChange (query) {
-    setSearchChange(query)
-  }
-
-  function onSelectchange (category) {
-    setSelectedCategory(category)
-  }
-
-  function onAddPlayerClick(e) {
-    setAddPlayerClick(true)
-  }
-
-  function onViewPlayersClick(e) {
-    // fetch("http://localhost:3000/players")
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   setPlayers(data);
-      setAddPlayerClick(false)
-    //})
-  }
 
   function onFormSumbit(formData) {
     fetch("http://localhost:3000/players", {
@@ -101,36 +80,10 @@ function App() {
     })
 }
 
-//then use onSubmitGrades to PATCH updated grades and reset "newPlayers"
-  
-
-//   function onSubmitGrades(gradeArr, playerObj) {
-//     playerObj.classes.map((c) => {
-//       const newGrades = [...c.weeklyGrades, gradeArr[c.period]]
-//     })
-
-//     fetch(`http://localhost:3000/players/${playerObj.id}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json", 
-//       },
-//       body: JSON.stringify({ 
-//         classes[0].weeklyGrades: newGrades
-//       })
-//     })
-// }
-
   return (
     <div className="App">
       <Header />
       <NavBar/>
-      <Filter 
-        onSearchChange={onSearchChange} 
-        onSelectchange={onSelectchange}
-        onAddPlayerClick={onAddPlayerClick}
-        addPlayerClick={addPlayerClick}
-        onViewPlayersClick={onViewPlayersClick}
-        />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -141,9 +94,6 @@ function App() {
         <Route path="/players">
           <PlayerContainer 
             players={players} 
-            search={searchChange} 
-            teamSelect={selectedCategory} 
-            addPlayerClick={addPlayerClick}
             />
         </Route>
       </Switch>

@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 
-function Filter ({ onSearchChange, onSelectchange, onAddPlayerClick, onViewPlayersClick }) {
+function Filter ({ onSearchChange, onSelectchange }) {
 
     function handleChange(e) {
         onSearchChange(e.target.value)
@@ -9,14 +9,6 @@ function Filter ({ onSearchChange, onSelectchange, onAddPlayerClick, onViewPlaye
 
     function handleSelectChange(e) {
         onSelectchange(e.target.value)
-    }
-
-    function handleAddPlayerClick (e) {
-        onAddPlayerClick(e)
-    }
-
-    function handleViewPlayersClick(e) {
-        onViewPlayersClick(e)
     }
 
     return (

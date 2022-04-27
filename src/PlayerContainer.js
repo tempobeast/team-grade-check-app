@@ -4,30 +4,41 @@ import PlayerCard from "./PlayerCard";
 import PlayerList from "./PlayerList";
 import Filter from "./Filter";
 
-function PlayerContainer({ players, search, teamSelect, addPlayerClick }) {
+function PlayerContainer({ players }) {
 
     const [clickedPlayer, setClickedPlayer] = useState("");
+    const [searchChange, setSearchChange] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("All");
+
     
     function onPlayerClick (selectedId) {
-        console.log(selectedId.toString())
         const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())
         setClickedPlayer(selectedPlayer)
     }
     
+    function onSearchChange (query) {
+        setSearchChange(query)
+      }
+    
+    function onSelectchange (category) {
+        setSelectedCategory(category)
+      }
+    
     return (
        <div>
-           <Filter />
+           <Filter 
+           onSearchChange={onSearchChange} 
+           onSelectchange={onSelectchange}
+            />
            <PlayerList 
            players={players} 
            onPlayerClick={onPlayerClick} 
-           search={search} 
-           teamSelect={teamSelect}
-           addPlayerClick={addPlayerClick}
+           search={searchChange} 
+           teamSelect={selectedCategory}
            />
            {clickedPlayer ? 
            <PlayerCard 
            player={clickedPlayer[0]} 
-           //onSubmitGrades={onSubmitGrades}
            /> 
            : null
            }
