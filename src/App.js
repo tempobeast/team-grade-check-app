@@ -1,9 +1,12 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import { Route, Switch } from "react-router-dom";
 import Header from "./Header"
 import NavBar from './NavBar';
 import PlayerContainer from './PlayerContainer';
 import NewPlayerForm from './NewPlayerForm';
+import Home from './Home';
+import Filter from "./Filter"
 
 //git pushes, client side routing, blog, video
 
@@ -13,7 +16,6 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [players, setPlayers] = useState([]);
   const [addPlayerClick, setAddPlayerClick] = useState(false)
-
 
   useEffect(() => {
     fetch("http://localhost:3000/players")
@@ -34,8 +36,12 @@ function App() {
   }
 
   function onViewPlayersClick(e) {
-    setAddPlayerClick(false);
-    setSelectedCategory("All");
+    // fetch("http://localhost:3000/players")
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setPlayers(data);
+      setAddPlayerClick(false)
+    //})
   }
 
   function onFormSumbit(formData) {
@@ -117,24 +123,31 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <NavBar 
+      <NavBar/>
+      <Filter 
         onSearchChange={onSearchChange} 
         onSelectchange={onSelectchange}
         onAddPlayerClick={onAddPlayerClick}
         addPlayerClick={addPlayerClick}
         onViewPlayersClick={onViewPlayersClick}
         />
-        {addPlayerClick ? 
-        <NewPlayerForm onFormSumbit={onFormSumbit}/> 
-        :
-      <PlayerContainer 
-        players={players} 
-        search={searchChange} 
-        teamSelect={selectedCategory} 
-        addPlayerClick={addPlayerClick}
-        // onSubmitGrades={onSubmitGrades}
-        />
-        }
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route> 
+        <Route path="/add-player">
+          <NewPlayerForm onFormSumbit={onFormSumbit}/> 
+        </Route>
+        <Route path="/players">
+          <PlayerContainer 
+            players={players} 
+            search={searchChange} 
+            teamSelect={selectedCategory} 
+            addPlayerClick={addPlayerClick}
+            />
+        </Route>
+      </Switch>
+        
     </div>
   );
 }

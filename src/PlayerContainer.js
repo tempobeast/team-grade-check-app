@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './App.css';
-import NewPlayerForm from "./NewPlayerForm";
 import PlayerCard from "./PlayerCard";
 import PlayerList from "./PlayerList";
+import Filter from "./Filter";
 
 function PlayerContainer({ players, search, teamSelect, addPlayerClick }) {
 
@@ -16,6 +16,7 @@ function PlayerContainer({ players, search, teamSelect, addPlayerClick }) {
     
     return (
        <div>
+           <Filter />
            <PlayerList 
            players={players} 
            onPlayerClick={onPlayerClick} 
