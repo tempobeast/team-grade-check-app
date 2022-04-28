@@ -5,6 +5,7 @@ import PlayerList from "./PlayerList";
 import Filter from "./Filter";
 
 function PlayerContainer({ players }) {
+    console.log(players)
 
     const [clickedPlayer, setClickedPlayer] = useState("");
     const [searchChange, setSearchChange] = useState("");

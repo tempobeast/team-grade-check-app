@@ -11,23 +11,32 @@ function Filter ({ onSearchChange, onSelectchange }) {
         onSelectchange(e.target.value)
     }
 
+    function handlePositionChange(e) {
+        console.log(e.target.value)
+    }
+
     return (
         <div>
-            <form className="navbar" id="navNameForm">
+            <form className="filter" id="filterNameForm">
                 <label>Player Name: </label>
                 <input onChange={handleChange} type="text" name="player-name" placeholder="Enter Player's Name"></input>
             </form>
-            <label htmlFor="team" id="team"></label>
-            <select onChange={handleSelectChange} className="navbar" id="navSelectTeam">
+            <select onChange={handleSelectChange} className="filter" id="filterSelectTeam">
                 <option value="All">All</option>
                 <option value="Varsity">Varsity</option>
                 <option value="JV">JV</option>
                 <option value="Freshman">Freshman</option>
             </select>
-            <form className="navbar" id="navNumberForm">
-                <label>Player Number: </label>
-                <input type="text" name="player-number" placeholder="Enter Number"></input>
-            </form>
+            <select onChange={handlePositionChange} className="filter" id="filterSelectPosition">
+                <option value="All">All</option>
+                <option value="O-Line">O-Line</option>
+                <option value="RB">RB</option>
+                <option value="QB">QB</option>
+                <option value="WR/TE">WR/TE</option>
+                <option value="D-Line">D-Line</option>
+                <option value="LB">LB</option>
+                <option value="DB">DB</option>
+            </select>
         </div>
     )
 }

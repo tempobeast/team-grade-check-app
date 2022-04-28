@@ -3,7 +3,7 @@ import './App.css';
 
 function Header() {
     return (
-        <div>
+        <div id="header">
             <img 
             className="school-logo"
             alt="spinning football"

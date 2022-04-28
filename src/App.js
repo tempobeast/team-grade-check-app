@@ -8,7 +8,7 @@ import NewPlayerForm from './NewPlayerForm';
 import Home from './Home';
 import Filter from "./Filter"
 
-//client side routing, blog, video
+//css (spacing, buttons, fonts, form), blog, video
 
 function App() {
 
@@ -88,16 +88,15 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route> 
-        <Route path="/add-player">
-          <NewPlayerForm onFormSumbit={onFormSumbit}/> 
-        </Route>
         <Route path="/players">
           <PlayerContainer 
             players={players} 
             />
         </Route>
+        <Route path="/add-player">
+          <NewPlayerForm onFormSumbit={onFormSumbit}/> 
+        </Route>
       </Switch>
-        
     </div>
   );
 }

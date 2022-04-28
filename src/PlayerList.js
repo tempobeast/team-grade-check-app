@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 
 
-function PlayerList({ players, onPlayerClick, search, teamSelect, addPlayerClick }) {
+function PlayerList({ players, onPlayerClick, search, teamSelect }) {
 
     function handleClick(e) {
         onPlayerClick(e.target.id)
