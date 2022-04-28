@@ -25,9 +25,7 @@ function NewPlayerForm ({ onFormSumbit }) {
         periodSevenClass: "",
         periodSevenTeacher: ""
         })
-
-
-    console.log(formData)    
+   
     function handleFormChange(e) {
         setFormData({...formData,
         [e.target.name]: e.target.value})
@@ -42,11 +40,11 @@ function NewPlayerForm ({ onFormSumbit }) {
         <div className="newPlayerContainer">
             <form onSubmit={handleFormSubmit}>
                 <div className="nameContainer">
-                    <label htmlFor="firstName">First Name: </label>
+                    <label id="firstName" htmlFor="firstName">First Name: </label>
                     <input onChange={handleFormChange} type="text" name="firstName" id="firstName" placeholder="Enter First Name"></input>
-                    <label htmlFor="lastName">Last Name: </label>
+                    <label id="lastName" htmlFor="lastName">Last Name: </label>
                     <input onChange={handleFormChange} type="text" name="lastName" id="lastName" placeholder="Enter Last Name"></input>
-                    <label htmlFor="number">Number: </label>
+                    <label id="number" htmlFor="number">Number: </label>
                     <input onChange={handleFormChange} type="text" name="number" id="number" placeholder="#"></input><hr/>
                 </div>
                 <div className="selectContainer">

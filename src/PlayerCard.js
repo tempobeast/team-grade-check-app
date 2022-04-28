@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import Classes from "./Classes";
 
-function PlayerCard ({ player }) {
 
-    const {firstName, lastName, grade, number, team, classes, position} = player;
+
+function PlayerCard ({ player }) {
+    
+    const {firstName, lastName, grade, number, team, classes, position, id} = player;
     
     return (
         <div className="playerCard">

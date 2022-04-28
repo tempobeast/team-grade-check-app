@@ -43,6 +43,9 @@ h1 {
   border: 2px solid #7b25a2;
 }
 
+h2 {
+  text-align: center;
+}
 
 #filterNameForm {
   width: 27.5% 
@@ -74,6 +77,10 @@ h1 {
   float: left;
   width: 30%;
   font-size: 20px;
+}
+
+.playerList:hover {
+  cursor: pointer;
 }
 
 .playerCard {
@@ -112,6 +119,8 @@ h1 {
   position: relative;
   color: purple;
   float: left;
+  margin-left: 25px;
+  margin-right: 100px;
 }
 
 #cardText {
@@ -160,28 +169,29 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #aaaaaa;
   padding: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
-}
-
-#number {
-  width: 40px;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .nameContainer {
-  width: 80%;
-  display: inline;
+  overflow:hidden;
+  width:auto;
+  display:inline; 
 }
 
+#number {
+  width: 80px;
+  text-align: center;
+}
+
+
 .selectContainer {
-  width: 80%;
+  overflow: hidden;
+  width: auto;
   display: inline;
-  margin-left: 10%;
-  margin-right: 10%;
 }
 
 .classContainer {
-  width: 80%;
   display: inline;
 }
 

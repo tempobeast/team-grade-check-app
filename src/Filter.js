@@ -1,18 +1,18 @@
 import React from "react";
 import './App.css';
 
-function Filter ({ onSearchChange, onSelectchange }) {
+function Filter ({ onSearchChange, onSelectChange, onPositionChange }) {
 
     function handleChange(e) {
         onSearchChange(e.target.value)
     }
 
     function handleSelectChange(e) {
-        onSelectchange(e.target.value)
+        onSelectChange(e.target.value)
     }
 
     function handlePositionChange(e) {
-        console.log(e.target.value)
+        onPositionChange(e.target.value)
     }
 
     return (

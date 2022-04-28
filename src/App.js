@@ -6,17 +6,14 @@ import NavBar from './NavBar';
 import PlayerContainer from './PlayerContainer';
 import NewPlayerForm from './NewPlayerForm';
 import Home from './Home';
-import Filter from "./Filter"
+import PlayerCard from './PlayerCard';
 
-//css (spacing, buttons, fonts, form), blog, video
+//css (PlayerCard formatting), blog, video
 
 function App() {
 
-  
-  
   const [players, setPlayers] = useState([]);
   
-
   useEffect(() => {
     fetch("http://localhost:3000/players")
     .then((res) => res.json())
@@ -35,6 +32,7 @@ function App() {
         "grade": formData.grade,
         "team": formData.team,
         "number": formData.number,
+        "position": formData.position,
         "classes": [
           {
             "period": "1",
@@ -88,7 +86,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route> 
-        <Route path="/players">
+        <Route exact path="/players">
           <PlayerContainer 
             players={players} 
             />

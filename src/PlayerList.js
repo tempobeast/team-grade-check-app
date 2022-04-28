@@ -2,13 +2,21 @@ import React from "react";
 import './App.css';
 
 
-function PlayerList({ players, onPlayerClick, search, teamSelect }) {
+function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition }) {
 
     function handleClick(e) {
         onPlayerClick(e.target.id)
     }
 
-    const teamCategory = players.filter((player) => {
+    const playerPosition = players.filter((player) => {
+        if (selectPosition === "All") {
+            return true
+        } else {
+            return player.position === selectPosition
+        }
+    })
+
+    const teamCategory = playerPosition.filter((player) => {
         if (teamSelect === "All") {
             return true
         } else {

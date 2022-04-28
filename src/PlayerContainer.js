@@ -5,11 +5,11 @@ import PlayerList from "./PlayerList";
 import Filter from "./Filter";
 
 function PlayerContainer({ players }) {
-    console.log(players)
 
     const [clickedPlayer, setClickedPlayer] = useState("");
     const [searchChange, setSearchChange] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [selectPosition, setSelectPosition] = useState("All")
 
     
     function onPlayerClick (selectedId) {
@@ -21,21 +21,27 @@ function PlayerContainer({ players }) {
         setSearchChange(query)
       }
     
-    function onSelectchange (category) {
+    function onSelectChange (category) {
         setSelectedCategory(category)
       }
+
+    function onPositionChange (position) {
+        setSelectPosition(position)
+    }
     
     return (
        <div>
            <Filter 
            onSearchChange={onSearchChange} 
-           onSelectchange={onSelectchange}
+           onSelectChange={onSelectChange}
+           onPositionChange={onPositionChange}
             />
            <PlayerList 
            players={players} 
            onPlayerClick={onPlayerClick} 
            search={searchChange} 
            teamSelect={selectedCategory}
+           selectPosition={selectPosition}
            />
            {clickedPlayer ? 
            <PlayerCard 
