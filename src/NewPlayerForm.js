@@ -73,8 +73,8 @@ function NewPlayerForm ({ onFormSumbit }) {
                         <option value="DB">DB</option>
                     </select>
                 </div><hr/>
-                <div className="classContainer">
-                    <label>Classes:</label><hr/>
+                <label>Classes:</label><hr/>
+                    <div className="classContainer">
                     <label htmlFor="periodOneClass">Period 1: </label>
                     <input onChange={handleFormChange} type="text" name="periodOneClass" id="period-1" placeholder="Enter Class"></input>
                     <label htmlFor="periodOneTeacher">Teacher: </label>

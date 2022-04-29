@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Header from "./Header"
 import NavBar from './NavBar';
 import PlayerContainer from './PlayerContainer';
@@ -13,6 +13,7 @@ import PlayerCard from './PlayerCard';
 function App() {
 
   const [players, setPlayers] = useState([]);
+  const history = useHistory();
   
   useEffect(() => {
     fetch("http://localhost:3000/players")
@@ -75,6 +76,7 @@ function App() {
     .then((res) => res.json())
     .then((data) => {
       setPlayers([...players, data]);
+      history.push("/players")
     })
 }
 

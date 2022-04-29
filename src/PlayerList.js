@@ -3,12 +3,27 @@ import './App.css';
 
 
 function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition }) {
+    console.log(players)
 
     function handleClick(e) {
         onPlayerClick(e.target.id)
     }
 
-    const playerPosition = players.filter((player) => {
+    const alphaPlayers = players.sort((a,b) => {
+        if (a.lastName > b.lastName) {
+            return 1
+        } else if (a.lastName === b.lastName && a.firstName > b.firstName) {
+            return 1
+        } else if (a.lastName === b.lastName && b.firstName > a.firstName) {
+            return -1
+        } else if (b.lastName > a.lastName) {
+            return -1
+        } else {
+            return 0
+        }
+    })
+
+    const playerPosition = alphaPlayers.filter((player) => {
         if (selectPosition === "All") {
             return true
         } else {
@@ -34,8 +49,8 @@ function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition
 
     return (
         <div className="playerList">
-            <h2>Players: </h2>
-            {playerSearch.map((player) => <p key={player.id} id={player.id} onClick={handleClick}>{player.lastName}, {player.firstName} - {player.team} #{player.number}</p>)}
+            <h3 id="playerListTitle">Players: </h3>
+            {playerSearch.map((player) => <p to={`/player/${player.id}`} key={player.id} id={player.id} onClick={handleClick}>{player.lastName}, {player.firstName} - {player.team} #{player.number}</p>)}
         </div>
     )
 }
