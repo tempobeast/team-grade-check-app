@@ -22,5 +22,5 @@ To run the server locally:
 
 ```npm install```
 
-npm run dev
+```npm run dev```
 
