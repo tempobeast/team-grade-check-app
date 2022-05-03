@@ -20,7 +20,7 @@ The back end has not been developed for this app yet, so the added grades do not
 
 To run the server locally:  
 
-npm install
+```npm install```
 
 npm run dev
 
