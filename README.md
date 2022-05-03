@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Team Grade Checker App 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Team Grade Checker is a React based app that allows a coach or manager of a high school sports team to track the weekly grades of their athletes. The app was created with the create-react-app. The eventual intent is to allow the manager or coach to easily filter the students that need academic help and check in with them weekly to keep them eligible. 
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+The coach can add new player data, including name, grade, position and each of the classes the student is taking and the teacher that teaches them. 
 
-### `npm start`
+![gif of add player](https://media.giphy.com/media/2N3JoSFxhBJmPM2TT4/giphy.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The coach can then filter students based on name, position or team (and eventually based on failing grade <60% or near failing 60-70%). When a player is clicked from the player list, a player card is rendered with all of the pertinent information. If the latest grades have been input the current grade will be displayed. If not, a form will be rendered so that the coach, manager or student can input their grades. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![gif of player list and player card](https://media.giphy.com/media/aEWuD2tvDbD14b9QG5/giphy.gif)
 
-### `npm test`
+## Future Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The back end has not been developed for this app yet, so the added grades do not persist. When the back end is functioning, any failing grade will result in the student, class and teacher text color chagning to red and any near failing changed to orange. I will also add a dropdown to filter failing and at-risk athletes. 
 
-### `npm run build`
+## Running the server 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the server locally:  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm run dev
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
