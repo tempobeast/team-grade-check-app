@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './App.css';
+import '../App.css';
 import PlayerCard from "./PlayerCard";
 import PlayerList from "./PlayerList";
 import Filter from "./Filter";
@@ -9,12 +9,18 @@ function PlayerContainer({ players }) {
     const [clickedPlayer, setClickedPlayer] = useState("");
     const [searchChange, setSearchChange] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [selectPosition, setSelectPosition] = useState("All")
+    const [selectPosition, setSelectPosition] = useState("All");
+    const [submitGrades, setSubmitGrades] = useState({});
 
     
     function onPlayerClick (selectedId) {
         const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())
-        setClickedPlayer(selectedPlayer)
+        setClickedPlayer(selectedPlayer);
+        setSubmitGrades({});
+    }
+
+    function handleGradeSubmit(gradeObj) {
+        setSubmitGrades(gradeObj)
     }
     
     function onSearchChange (query) {
@@ -28,7 +34,7 @@ function PlayerContainer({ players }) {
     function onPositionChange (position) {
         setSelectPosition(position)
     }
-    
+
     return (
        <div>
            <Filter 
@@ -46,6 +52,8 @@ function PlayerContainer({ players }) {
            {clickedPlayer ? 
            <PlayerCard 
            player={clickedPlayer[0]} 
+           onGradeSubmit={handleGradeSubmit}
+           submitGrades={submitGrades}
            /> 
            : null
            }

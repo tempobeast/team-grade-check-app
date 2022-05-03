@@ -1,4 +1,4 @@
-import './App.css';
+import '../App.css';
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from "react-router-dom";
 import Header from "./Header"

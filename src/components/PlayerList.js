@@ -1,9 +1,8 @@
 import React from "react";
-import './App.css';
+import '../App.css';
 
 
 function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition }) {
-    console.log(players)
 
     function handleClick(e) {
         onPlayerClick(e.target.id)
