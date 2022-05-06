@@ -8,13 +8,15 @@ The coach can add new player data, including name, grade, position and each of t
 
 ![gif of add player](https://media.giphy.com/media/2N3JoSFxhBJmPM2TT4/giphy.gif)
 
-The coach can then filter students based on name, position or team (and eventually based on failing grade <60% or near failing 60-70%). When a player is clicked from the player list, a player card is rendered with all of the pertinent information. If the latest grades have been input the current grade will be displayed. If not, a form will be rendered so that the coach, manager or student can input their grades. 
+The coach can then filter students based on name, position or team. Failing grades (<60%) or near failing (60-70%) will display in red an yellow, respectively . When a player is clicked from the player list, a player card is rendered with all of the pertinent information. If the latest grades have been input the current grade will be displayed. If not, a form will be rendered so that the coach, manager or student can input their grades. 
 
 ![gif of player list and player card](https://media.giphy.com/media/aEWuD2tvDbD14b9QG5/giphy.gif)
 
 ## Future Features
 
-The back end has not been developed for this app yet, so the added grades do not persist. When the back end is functioning, any failing grade will result in the student, class and teacher text color chagning to red and any near failing changed to orange. I will also add a dropdown to filter failing and at-risk athletes. 
+Future features include: 
+-links to each teacher's email to start dialog or ask questions
+-graph of players grades over time to easily view progress or regress
 
 ## Running the server 
 
