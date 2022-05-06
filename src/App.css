@@ -156,6 +156,7 @@ h3 {
 
 .listOfClasses {
   font-size: 20px;
+  text-align: justify;
 }
 
 input[type=text], select {
@@ -219,7 +220,18 @@ input[type=submit]:hover {
 }
 
 .classList {
-  display: inline;
+  width: 100%;
+  display: contents;
 }
 
+#fail {
+  color: red
+}
 
+#warning {
+  color: yellow
+}
+
+#pass {
+  color: white
+}

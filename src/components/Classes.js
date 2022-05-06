@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../App.css';
 
 
-function Classes({ classes, onGradeSubmit, submitGrades }) {
+function Classes({ classes, onGradeUpdate, player }) {
 
     const [addGrade, setAddGrade] = useState(false);
     const [gradeFormData, setGradeFormData] = useState({
@@ -15,6 +15,27 @@ function Classes({ classes, onGradeSubmit, submitGrades }) {
         7: "N/A",
     });
 
+    function handleGradeSubmit(e) {
+        const newGrades = player.classes.map((c, i) => {
+            return {...c, grade: gradeFormData[i+1]}
+        })
+        fetch(`http://localhost:3000/players/${player.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                classes: newGrades,
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            onGradeUpdate(data)
+            setAddGrade(false)
+        })
+    }
+
+
     function handleGradeChange(e) {
         setGradeFormData({
             ...gradeFormData,
@@ -26,9 +47,14 @@ function Classes({ classes, onGradeSubmit, submitGrades }) {
         setAddGrade(true)
     }
 
-    function handleGradeSubmit(e) {
-        onGradeSubmit(gradeFormData)
-        setAddGrade(false)
+    function passFail(grade) {
+        if (grade < 60) {
+            return "fail"
+        } else if (grade > 60 && grade < 70) {
+            return "warning"
+        } else {
+            return "pass"
+        }
     }
 
     const renderClasses = classes.map((c) => {
@@ -44,7 +70,7 @@ function Classes({ classes, onGradeSubmit, submitGrades }) {
                     <input onChange={handleGradeChange} type="text" name={c.period}></input>
                 </form>
                 : 
-                <p className="classList">{Object.values(submitGrades)[c.period - 1]}</p>
+                <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
                 }
             </li>
         )}

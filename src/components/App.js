@@ -13,6 +13,7 @@ import PlayerCard from './PlayerCard';
 function App() {
 
   const [players, setPlayers] = useState([]);
+  const [clickedPlayer, setClickedPlayer] = useState("");
   const history = useHistory();
   
   useEffect(() => {
@@ -80,6 +81,12 @@ function App() {
     })
 }
 
+function handlePatchGrades(playerObj) {
+  const newPlayerList = players.filter((player) => player.id !== playerObj.id)
+  setPlayers([...newPlayerList, playerObj])
+  setClickedPlayer([playerObj])
+}
+
   return (
     <div className="App">
       <Header />
@@ -91,6 +98,10 @@ function App() {
         <Route exact path="/players">
           <PlayerContainer 
             players={players} 
+            onGradeUpdate={handlePatchGrades}
+            displayUpdatedGrades={handlePatchGrades}
+            setClickedPlayer={setClickedPlayer}
+            clickedPlayer={clickedPlayer}
             />
         </Route>
         <Route path="/add-player">

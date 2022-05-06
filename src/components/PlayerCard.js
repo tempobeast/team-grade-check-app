@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import '../App.css';
 import Classes from "./Classes";
 
 
 
-function PlayerCard ({ player, onGradeSubmit, submitGrades }) {
+function PlayerCard ({ player, onGradeUpdate }) {
+    
 
     const {firstName, lastName, grade, number, team, classes, position, id} = player;
     
@@ -17,8 +18,9 @@ function PlayerCard ({ player, onGradeSubmit, submitGrades }) {
             <p className="cardHeader" id="cardText">Team: {team} | Grade: {grade}</p>
             <Classes 
             classes={classes} 
-            onGradeSubmit={onGradeSubmit}
-            submitGrades={submitGrades}
+            onGradeUpdate={onGradeUpdate}
+            player={player}
+           // onNewGradeSubmit={onNewGradeSubmit}
             /> 
         </div> 
     )
