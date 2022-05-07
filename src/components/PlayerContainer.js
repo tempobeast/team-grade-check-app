@@ -9,7 +9,6 @@ function PlayerContainer({ players, onGradeUpdate, setClickedPlayer, clickedPlay
     const [searchChange, setSearchChange] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectPosition, setSelectPosition] = useState("All");
-
     
     function onPlayerClick (selectedId) {
         const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())

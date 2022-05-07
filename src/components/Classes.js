@@ -37,10 +37,12 @@ function Classes({ classes, onGradeUpdate, player }) {
 
 
     function handleGradeChange(e) {
-        setGradeFormData({
-            ...gradeFormData,
-            [e.target.name]: e.target.value
-        })
+        if (e.target.value < 100 && e.target.value > -1){
+            setGradeFormData({
+                ...gradeFormData,
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     function handleAddGradeClick(e) {
@@ -61,13 +63,20 @@ function Classes({ classes, onGradeUpdate, player }) {
         const classTitle = c.class.charAt(0).toUpperCase() + c.class.slice(1)
 
         return (
+
             <li key={c.period} id={c.period}>
                 <p className="classList">Class: {classTitle}  |  Teacher: {c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}  </p> 
                 <p className="classList"> | </p>
                 {addGrade ? 
-                <form key={c.class} id="addGradeForm" className="classList">
+                <form key={c.class} id="addGradeForm" className="classList" >
                     <label>Add {classTitle} Grade: </label>
-                    <input onChange={handleGradeChange} type="text" name={c.period}></input>
+                    <input 
+                    onChange={handleGradeChange} 
+                    type="number" 
+                    max="101"
+                    min="1"
+                    name={c.period}
+                    />
                 </form>
                 : 
                 <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>

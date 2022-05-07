@@ -224,6 +224,18 @@ input[type=submit]:hover {
   display: contents;
 }
 
+.fail {
+  color: red
+}
+
+.warning {
+  color: yellow
+}
+
+.pass {
+  color: white
+}
+
 #fail {
   color: red
 }

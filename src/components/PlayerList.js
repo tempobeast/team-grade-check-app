@@ -22,6 +22,8 @@ function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition
         }
     })
 
+    
+
     const playerPosition = alphaPlayers.filter((player) => {
         if (selectPosition === "All") {
             return true
@@ -44,12 +46,45 @@ function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition
         } else {
             return false
         }
-    })
+    })  
+
+    // const failFilter = playerSearch.filter((player) => {
+    //     failingGrade(player) ? true : false
+    //     }
+    // )
+
+    function failingGrade(player) {
+        const playerCheck = player.classes.find((c) => c.grade < 60)
+        return playerCheck
+    }
+
+    function dangerZone(player) {
+        const playerCheck = player.classes.find((c) => c.grade > 60 && c.grade < 70)
+        return playerCheck
+    }
 
     return (
         <div className="playerList">
             <h3 id="playerListTitle">Players: </h3>
-            {playerSearch.map((player) => <p to={`/player/${player.id}`} key={player.id} id={player.id} onClick={handleClick}>{player.lastName}, {player.firstName} - {player.team} #{player.number}</p>)}
+            {playerSearch.map((player) => 
+                <p  
+                to={`/player/${player.id}`} 
+                id={player.id} key={player.id} 
+                className=
+                {failingGrade(player) 
+                ? 
+                "fail" 
+                : 
+                dangerZone(player) 
+                ? 
+                "warning" 
+                : 
+                "pass"} 
+                onClick={handleClick}
+                >
+                {player.lastName}, {player.firstName} - {player.team} #{player.number}
+                </p>
+                )}
         </div>
     )
 }
