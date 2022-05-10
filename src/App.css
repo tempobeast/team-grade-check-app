@@ -21,9 +21,20 @@ h1 {
   font-size: 40px;
 }
 
-#about {
+.about {
   font-size: 20px;
   text-align: center;
+}
+
+#tagline {
+  font-size: 25px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+hr {
+  width: 50%;
+  margin-bottom: 50px;
 }
 
 .navBar {
