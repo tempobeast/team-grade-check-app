@@ -67,35 +67,65 @@ function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
         const classTitle = c.class.charAt(0).toUpperCase() + c.class.slice(1)
 
         return (
+                <tr>
+                    <td>{classTitle}</td>
+                    <td>{c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}</td>
+                    <td>{addGrade ? 
+                    <form key={c.class} id="addGradeForm" className="classList" >
+                        <label>Add {classTitle} Grade: </label>
+                        <input 
+                        onChange={handleGradeChange} 
+                        type="number" 
+                        max="101"
+                        min="1"
+                        name={c.period}
+                        />
+                    </form>
+                    : 
+                    <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
+                    }</td>
+                </tr>
+        )
+                })
 
-            <li key={c.period} id={c.period}>
-                <p className="classList">Class: {classTitle}  |  Teacher: {c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}  </p> 
-                <p className="classList"> | </p>
-                {addGrade ? 
-                <form key={c.class} id="addGradeForm" className="classList" >
-                    <label>Add {classTitle} Grade: </label>
-                    <input 
-                    onChange={handleGradeChange} 
-                    type="number" 
-                    max="101"
-                    min="1"
-                    name={c.period}
-                    />
-                </form>
-                : 
-                <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
-                }
-            </li>
-        )}
-)
+        // return (
+
+        //     <li key={c.period} id={c.period}>
+        //         <p className="classList">Class: {classTitle}  | </p>
+        //         <p className="classList">  Teacher: {c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}  </p> 
+        //         <p className="classList"> | </p>
+        //         {addGrade ? 
+        //         <form key={c.class} id="addGradeForm" className="classList" >
+        //             <label>Add {classTitle} Grade: </label>
+        //             <input 
+        //             onChange={handleGradeChange} 
+        //             type="number" 
+        //             max="101"
+        //             min="1"
+        //             name={c.period}
+        //             />
+        //         </form>
+        //         : 
+        //         <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
+        //         }
+        //     </li>
+        // )}
+// )
 
     return (
-        <ol className="listOfClasses">
-            {renderClasses}
+        <div className="listOfClasses">
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Teacher</th>
+                    <th>Grade</th>
+                </tr>
+                {renderClasses}
+            </table>
             {error ? <span style={{ color: "red" }}>{error}</span> : null}<br/>
             <button onClick={handleAddGradeClick}>Add Grades</button>
             <button onClick={handleGradeSubmit}>Submit Grades</button>
-        </ol>
+        </div>
     )
 }
 

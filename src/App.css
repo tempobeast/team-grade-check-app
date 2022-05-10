@@ -213,15 +213,29 @@ input[type=submit]:hover {
   display: inline;
 }
 
-.classContainer {
+/* .classContainer {
   display: inline;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 .classList {
   width: 100%;
   display: contents;
+}
+
+th, td{
+  table-layout: fixed;
+  width: 250px;
+  text-align: left;
+  border: 1px, solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fail {
