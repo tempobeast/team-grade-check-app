@@ -4,7 +4,7 @@ import '../App.css';
 
 function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
 
-    
+    const [error, setError] = useState(null);
     const [gradeFormData, setGradeFormData] = useState({
         1: "N/A",
         2: "N/A",
@@ -37,11 +37,15 @@ function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
 
 
     function handleGradeChange(e) {
+        const newGrade = e.target.value;
         if (e.target.value < 101 && e.target.value > -1){
             setGradeFormData({
                 ...gradeFormData,
                 [e.target.name]: e.target.value
             })
+            setError(null)
+        } else {
+            setError(`${newGrade} is not a valid number!`);
         }
     }
 
@@ -88,6 +92,7 @@ function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
     return (
         <ol className="listOfClasses">
             {renderClasses}
+            {error ? <span style={{ color: "red" }}>{error}</span> : null}<br/>
             <button onClick={handleAddGradeClick}>Add Grades</button>
             <button onClick={handleGradeSubmit}>Submit Grades</button>
         </ol>
