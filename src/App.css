@@ -63,15 +63,18 @@ h3 {
 }
 
 #filterNameForm {
-  width: 27.5% 
+  width: 20%;
+  margin-left: 0;
 }
 
 #filterSelectTeam {
-  width: 27.5%;
+  width: 20%;
+  margin-left: 0;
 }
 
 #filterSelectPosition {
-  width: 27.5%;
+  width: 20%;
+  margin-left: 0;
 }
 
 .filter {
@@ -213,12 +216,6 @@ input[type=submit]:hover {
   display: inline;
 }
 
-/* .classContainer {
-  display: inline;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
 .classList {
   width: 100%;
   display: contents;
@@ -228,14 +225,12 @@ th, td{
   table-layout: fixed;
   width: 250px;
   text-align: left;
-  border: 1px, solid #ddd;
 }
 
 table {
   border-collapse: collapse;
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 8%;
 }
 
 .fail {

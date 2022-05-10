@@ -17,16 +17,18 @@ function Filter ({ onSearchChange, onSelectChange, onPositionChange }) {
 
     return (
         <div>
+             <label>Player Name: </label>
             <form className="filter" id="filterNameForm">
-                <label>Player Name: </label>
                 <input onChange={handleChange} type="text" name="player-name" placeholder="Enter Player's Name"></input>
             </form>
+            <label className="filter">Team: </label>
             <select onChange={handleSelectChange} className="filter" id="filterSelectTeam">
                 <option value="All">All</option>
                 <option value="Varsity">Varsity</option>
                 <option value="JV">JV</option>
                 <option value="Freshman">Freshman</option>
             </select>
+            <label className="filter">Position: </label>
             <select onChange={handlePositionChange} className="filter" id="filterSelectPosition">
                 <option value="All">All</option>
                 <option value="O-Line">O-Line</option>

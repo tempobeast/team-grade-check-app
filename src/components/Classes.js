@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import '../App.css';
 
 
-function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
+function Classes({ onGradeUpdate, player, addGrade, setAddGrade, gradeFormData, setGradeFormData }) {
+
+    console.log(gradeFormData)
+
+    const { classes } = player
 
     const [error, setError] = useState(null);
-    const [gradeFormData, setGradeFormData] = useState({
-        1: "N/A",
-        2: "N/A",
-        3: "N/A",
-        4: "N/A",
-        5: "N/A",
-        6: "N/A",
-        7: "N/A",
-    });
+    // const [gradeFormData, setGradeFormData] = useState({
+    //     1: "N/A",
+    //     2: "N/A",
+    //     3: "N/A",
+    //     4: "N/A",
+    //     5: "N/A",
+    //     6: "N/A",
+    //     7: "N/A",
+    // });
+    
 
     function handleGradeSubmit(e) {
         const newGrades = player.classes.map((c, i) => {
@@ -123,8 +128,8 @@ function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
                 {renderClasses}
             </table>
             {error ? <span style={{ color: "red" }}>{error}</span> : null}<br/>
-            <button onClick={handleAddGradeClick}>Add Grades</button>
-            <button onClick={handleGradeSubmit}>Submit Grades</button>
+            <button className="classButtons" onClick={handleAddGradeClick}>Add Grades</button>
+            <button className="classButtons" onClick={handleGradeSubmit}>Submit Grades</button>
         </div>
     )
 }
