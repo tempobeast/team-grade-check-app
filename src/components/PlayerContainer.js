@@ -9,6 +9,7 @@ function PlayerContainer({ players, onGradeUpdate, setClickedPlayer, clickedPlay
     const [searchChange, setSearchChange] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [selectPosition, setSelectPosition] = useState("All");
+    const [addGrade, setAddGrade] = useState(false);
     
     function onPlayerClick (selectedId) {
         const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())
@@ -40,12 +41,14 @@ function PlayerContainer({ players, onGradeUpdate, setClickedPlayer, clickedPlay
            search={searchChange} 
            teamSelect={selectedCategory}
            selectPosition={selectPosition}
+           setAddGrade={setAddGrade}
            />
            {clickedPlayer ? 
            <PlayerCard 
            player={clickedPlayer[0]} 
            onGradeUpdate={onGradeUpdate}
-           //onNewGradeSubmit={onNewGradeSubmit}
+           addGrade={addGrade}
+           setAddGrade={setAddGrade}
            /> 
            : null
            }

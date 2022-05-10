@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import '../App.css';
 import Classes from "./Classes";
 
 
 
-function PlayerCard ({ player, onGradeUpdate }) {
+function PlayerCard ({ player, onGradeUpdate, addGrade, setAddGrade }) {
     
-
+    
     const {firstName, lastName, grade, number, team, classes, position, id} = player;
     
     return (
@@ -20,7 +20,8 @@ function PlayerCard ({ player, onGradeUpdate }) {
             classes={classes} 
             onGradeUpdate={onGradeUpdate}
             player={player}
-           // onNewGradeSubmit={onNewGradeSubmit}
+            addGrade={addGrade}
+            setAddGrade={setAddGrade}
             /> 
         </div> 
     )

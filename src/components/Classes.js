@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import '../App.css';
 
 
-function Classes({ classes, onGradeUpdate, player }) {
+function Classes({ classes, onGradeUpdate, player, addGrade, setAddGrade }) {
 
-    const [addGrade, setAddGrade] = useState(false);
+    
     const [gradeFormData, setGradeFormData] = useState({
         1: "N/A",
         2: "N/A",
@@ -37,7 +37,7 @@ function Classes({ classes, onGradeUpdate, player }) {
 
 
     function handleGradeChange(e) {
-        if (e.target.value < 100 && e.target.value > -1){
+        if (e.target.value < 101 && e.target.value > -1){
             setGradeFormData({
                 ...gradeFormData,
                 [e.target.name]: e.target.value
@@ -52,7 +52,7 @@ function Classes({ classes, onGradeUpdate, player }) {
     function passFail(grade) {
         if (grade < 60) {
             return "fail"
-        } else if (grade > 60 && grade < 70) {
+        } else if (grade >= 60 && grade < 70) {
             return "warning"
         } else {
             return "pass"

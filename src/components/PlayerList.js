@@ -2,9 +2,10 @@ import React from "react";
 import '../App.css';
 
 
-function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition }) {
+function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition, setAddGrade }) {
 
     function handleClick(e) {
+        setAddGrade(false)
         onPlayerClick(e.target.id)
     }
 
@@ -59,7 +60,7 @@ function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition
     }
 
     function dangerZone(player) {
-        const playerCheck = player.classes.find((c) => c.grade > 60 && c.grade < 70)
+        const playerCheck = player.classes.find((c) => c.grade >= 60 && c.grade < 70)
         return playerCheck
     }
 
@@ -69,7 +70,8 @@ function PlayerList({ players, onPlayerClick, search, teamSelect, selectPosition
             {playerSearch.map((player) => 
                 <p  
                 to={`/player/${player.id}`} 
-                id={player.id} key={player.id} 
+                id={player.id} 
+                key={player.id} 
                 className=
                 {failingGrade(player) 
                 ? 
