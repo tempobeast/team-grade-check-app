@@ -16,7 +16,7 @@ The coach can then filter students based on name, position or team. Failing grad
 
 Future features include: 
 -links to each teacher's email to start dialog or ask questions
--graph of players grades over time to easily view progress or regress
+-graph of players grades over time to easily view progression or regression
 
 ## Running the server 
 
