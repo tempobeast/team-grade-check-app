@@ -3,7 +3,7 @@ import '../App.css';
 
 function Filter ({ onSearchChange, onSelectChange, onPositionChange }) {
 
-    function handleChange(e) {
+    function handleNameChange(e) {
         onSearchChange(e.target.value)
     }
 
@@ -19,7 +19,7 @@ function Filter ({ onSearchChange, onSelectChange, onPositionChange }) {
         <div>
              <label>Player Name: </label>
             <form className="filter" id="filterNameForm">
-                <input onChange={handleChange} type="text" name="player-name" placeholder="Enter Player's Name"></input>
+                <input onChange={handleNameChange} type="text" name="player-name" placeholder="Enter Player's Name"></input>
             </form>
             <label className="filter">Team: </label>
             <select onChange={handleSelectChange} className="filter" id="filterSelectTeam">

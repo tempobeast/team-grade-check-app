@@ -19,8 +19,6 @@ function PlayerContainer({ players, onGradeUpdate, setClickedPlayer, clickedPlay
         6: "N/A",
         7: "N/A",
     });
-    
-    console.log(gradeFormData)
 
     function onPlayerClick (selectedId) {
         const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())
