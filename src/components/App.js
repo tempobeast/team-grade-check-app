@@ -6,15 +6,13 @@ import NavBar from './NavBar';
 import PlayerContainer from './PlayerContainer';
 import NewPlayerForm from './NewPlayerForm';
 import Home from './Home';
-import PlayerCard from './PlayerCard';
-
-//css (PlayerCard formatting), blog, video
 
 function App() {
 
   const [players, setPlayers] = useState([]);
-  const [clickedPlayer, setClickedPlayer] = useState("");
   const history = useHistory();
+  const [clickedPlayer, setClickedPlayer] = useState("");
+  const [addGrade, setAddGrade] = useState(false);
   
   useEffect(() => {
     fetch("http://localhost:3000/players")
@@ -81,11 +79,41 @@ function App() {
     })
 }
 
-function handlePatchGrades(playerObj) {
-  const newPlayerList = players.filter((player) => player.id !== playerObj.id)
-  setPlayers([...newPlayerList, playerObj])
-  setClickedPlayer([playerObj])
+function onGradeSubmit (gradeFormData, player) {
+  const newGrades = player.classes.map((c, i) => {
+    return {...c, grade: gradeFormData[i+1]}
+})
+fetch(`http://localhost:3000/players/${player.id}`, {
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        classes: newGrades,
+    })
+})
+.then((res) => res.json())
+.then((updatedPlayer) => {
+    const newPlayerList = players.filter((player) => player.id !== updatedPlayer.id);
+    setPlayers([...newPlayerList, updatedPlayer]);
+    setClickedPlayer([updatedPlayer])
+    setAddGrade(false)
+})
 }
+
+function onPlayerClick (selectedId) {
+  const selectedPlayer = players.filter((player) => player.id.toString() === selectedId.toString())
+  setClickedPlayer(selectedPlayer);
+  setAddGrade(false)
+}
+
+
+// function handlePatchGrades(playerObj) {
+//   console.log(playerObj)
+//   const newPlayerList = players.filter((player) => player.id !== playerObj.id)
+//   setPlayers([...newPlayerList, playerObj])
+//   setClickedPlayer([playerObj])
+// }
 
   return (
     <div className="App">
@@ -98,10 +126,12 @@ function handlePatchGrades(playerObj) {
         <Route exact path="/players">
           <PlayerContainer 
             players={players} 
-            onGradeUpdate={handlePatchGrades}
-            displayUpdatedGrades={handlePatchGrades}
-            setClickedPlayer={setClickedPlayer}
+            onGradeSubmit={onGradeSubmit}
             clickedPlayer={clickedPlayer}
+            setClickedPlayer={setClickedPlayer}
+            setAddGrade={setAddGrade}
+            addGrade={addGrade}
+            onPlayerClick={onPlayerClick}
             />
         </Route>
         <Route path="/add-player">

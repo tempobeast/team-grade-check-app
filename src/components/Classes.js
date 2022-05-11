@@ -2,43 +2,25 @@ import React, { useState } from "react";
 import '../App.css';
 
 
-function Classes({ onGradeUpdate, player, addGrade, setAddGrade, gradeFormData, setGradeFormData }) {
-
-    console.log(gradeFormData)
+function Classes({ onGradeSubmit, player, addGrade, setAddGrade }) {
 
     const { classes } = player
 
     const [error, setError] = useState(null);
-    // const [gradeFormData, setGradeFormData] = useState({
-    //     1: "N/A",
-    //     2: "N/A",
-    //     3: "N/A",
-    //     4: "N/A",
-    //     5: "N/A",
-    //     6: "N/A",
-    //     7: "N/A",
-    // });
-    
+    const [gradeFormData, setGradeFormData] = useState({
+        1 : classes[0].grade,
+        2 : classes[1].grade,
+        3 : classes[2].grade,
+        4 : classes[3].grade,
+        5 : classes[4].grade,
+        6 : classes[5].grade,
+        7 : classes[6].grade,
+    });
 
     function handleGradeSubmit(e) {
-        const newGrades = player.classes.map((c, i) => {
-            return {...c, grade: gradeFormData[i+1]}
-        })
-        fetch(`http://localhost:3000/players/${player.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                classes: newGrades,
-            })
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            onGradeUpdate(data)
-            setAddGrade(false)
-        })
+        onGradeSubmit(gradeFormData, player)
     }
+        
 
 
     function handleGradeChange(e) {
@@ -46,7 +28,7 @@ function Classes({ onGradeUpdate, player, addGrade, setAddGrade, gradeFormData, 
         if (e.target.value < 101 && e.target.value > -1){
             setGradeFormData({
                 ...gradeFormData,
-                [e.target.name]: e.target.value
+                [e.target.name]: newGrade
             })
             setError(null)
         } else {
@@ -71,61 +53,51 @@ function Classes({ onGradeUpdate, player, addGrade, setAddGrade, gradeFormData, 
     const renderClasses = classes.map((c) => {
         const classTitle = c.class.charAt(0).toUpperCase() + c.class.slice(1)
 
-        return (
-                <tr>
+        if (addGrade) {
+            
+            return (
+                <tr key={c.period}>
                     <td>{classTitle}</td>
                     <td>{c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}</td>
-                    <td>{addGrade ? 
-                    <form key={c.class} id="addGradeForm" className="classList" >
-                        <label>Add {classTitle} Grade: </label>
-                        <input 
-                        onChange={handleGradeChange} 
-                        type="number" 
-                        max="101"
-                        min="1"
-                        name={c.period}
-                        />
-                    </form>
-                    : 
-                    <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
-                    }</td>
+                    <td>
+                        <form id="addGradeForm" className="classList" >
+                            <label>Add {classTitle} Grade:</label>
+                            <input 
+                            value={gradeFormData[c.period]}
+                            onChange={handleGradeChange}
+                            type="number"
+                            max="101"
+                            min="1"
+                            name={c.period}
+                            />
+                        </form>
+                    </td>
                 </tr>
-        )
-                })
-
-        // return (
-
-        //     <li key={c.period} id={c.period}>
-        //         <p className="classList">Class: {classTitle}  | </p>
-        //         <p className="classList">  Teacher: {c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}  </p> 
-        //         <p className="classList"> | </p>
-        //         {addGrade ? 
-        //         <form key={c.class} id="addGradeForm" className="classList" >
-        //             <label>Add {classTitle} Grade: </label>
-        //             <input 
-        //             onChange={handleGradeChange} 
-        //             type="number" 
-        //             max="101"
-        //             min="1"
-        //             name={c.period}
-        //             />
-        //         </form>
-        //         : 
-        //         <p className="classList" id={passFail(c.grade)}>{c.grade}%</p>
-        //         }
-        //     </li>
-        // )}
-// )
+            )
+        } else {
+            return (
+                <tr key={c.period}>
+                    <td>{classTitle}</td>
+                    <td>{c.teacher.charAt(0).toUpperCase() + c.teacher.slice(1)}</td>
+                    <td className="classList" id={passFail(c.grade)}>{c.grade}%</td>
+                </tr>
+            )
+        }
+    })
 
     return (
         <div className="listOfClasses">
             <table>
-                <tr>
-                    <th>Class</th>
-                    <th>Teacher</th>
-                    <th>Grade</th>
-                </tr>
-                {renderClasses}
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Teacher</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderClasses}
+                </tbody>
             </table>
             {error ? <span style={{ color: "red" }}>{error}</span> : null}<br/>
             <button className="classButtons" onClick={handleAddGradeClick}>Add Grades</button>

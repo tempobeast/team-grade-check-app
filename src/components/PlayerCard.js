@@ -4,9 +4,9 @@ import Classes from "./Classes";
 
 
 
-function PlayerCard ({ player, onGradeUpdate, addGrade, setAddGrade, gradeFormData, setGradeFormData }) {
+function PlayerCard ({ player, onGradeSubmit, addGrade, setAddGrade }) {
 
-    console.log(gradeFormData)
+    console.log(player)
     
     
     const {firstName, lastName, grade, number, team, position } = player;
@@ -19,12 +19,10 @@ function PlayerCard ({ player, onGradeUpdate, addGrade, setAddGrade, gradeFormDa
             </div>
             <p className="cardHeader" id="cardText">Team: {team} | Grade: {grade}</p>
             <Classes 
-            onGradeUpdate={onGradeUpdate}
+            onGradeSubmit={onGradeSubmit}
             player={player}
             addGrade={addGrade}
             setAddGrade={setAddGrade}
-            setGradeFormData={setGradeFormData}
-            gradeFormData={gradeFormData}
             /> 
         </div> 
     )
